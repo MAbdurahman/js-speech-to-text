@@ -80,7 +80,7 @@ body {
   justify-content: center;
   align-items: center;
   color: #fff;
-  color: var(--clr-neutral-200);
+  color: var(--clr-neutral-300);
   color: var(--clr-augmented-400);
   font-family: var(--ff-font-body);
   font-weight: var(--fw-font-weight-400);
@@ -145,5 +145,92 @@ input::placeholder {
 ion-icon {
   font-size: 4rem;
 }
+
+/*=============================================
+          wrapper
+================================================*/
+.wrapper {
+  max-width: 640px;
+  padding: 20px;
+  border-radius: var(--br-border-radius);
+  background: hsla(0, 0%, 94%, 0.7);
+  background: var(--clr-augmented-100);
+}
+
+@media only screen and (max-width: 540px) {
+  .wrapper {
+    background: var(--clr-augmented-100);
+  }
+}
+/*=============================================
+
+================================================*/
+/*.wrapper {
+  width: 400px;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: var(--clr-augmented-100);
+}*/
+.heading {
+  font-weight: var(--fw-font-weight-700);
+  margin-bottom: 0.75em;
+}
+
+/*=============================================
+        select
+================================================*/
+.options select {
+  width: 100%;
+  padding: 10px;
+  border: 2px solid var(--clr-neutral-700);
+  border-radius: var(--br-border-radius);
+  outline: none;
+}
+
+.options div:not(:last-child) select {
+  margin-bottom: 20px;
+}
+
+.options label {
+  font-size: 1rem;
+  font-weight: var(--fw-font-weight-600);
+  color: var(--clr-neutral-700);
+}
+
+select#language {
+  font-size: 1.25rem;
+  font-weight: var(--fw-font-weight-600);
+}
+
+hr.line {
+  position: relative;
+  width: 100%;
+  height: 2px;
+  background-color: var(--clr-primary-800);
+  /*opacity: 0.5;*/
+  margin: 32px 0;
+}
+
+/*=============================================
+
+================================================*/
+/*=============================================
+
+================================================*/
+/*=============================================
+
+================================================*/
+/*=============================================
+
+================================================*/
+/*=============================================
+
+================================================*/
+/*=============================================
+
+================================================*/
+/*=============================================
+
+================================================*/
 
 /*# sourceMappingURL=main.css.map */
