@@ -141,6 +141,15 @@ input::placeholder {
   color: var(--clr-augmented-200);
 }
 
+#result-text:empty:before {
+  content: attr(data-placeholder);
+  color: var(--clr-augmented-200);
+}
+
+.interim {
+  display: none;
+}
+
 ion-icon {
   font-size: 4rem;
 }
@@ -184,6 +193,7 @@ ion-icon {
   color: var(--clr-augmented-400);
   background-color: var(--clr-neutral-400);
   border: 2px solid var(--clr-neutral-700);
+  border: 2px solid var(--clr-primary-800);
   border-radius: var(--br-border-radius);
   outline: none;
 }
@@ -277,6 +287,20 @@ hr.line {
 /*=============================================
 
 ================================================*/
+.result-text {
+  width: 100%;
+  min-height: 200px;
+  margin-bottom: 20px;
+  padding: 10px;
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--clr-augmented-400);
+  background-color: var(--clr-neutral-400);
+  border-radius: var(--br-border-radius);
+  border: 2px solid var(--clr-neutral-700);
+  border: 2px solid var(--clr-primary-800);
+}
+
 /*=============================================
 
 ================================================*/
