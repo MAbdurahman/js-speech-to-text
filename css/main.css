@@ -181,6 +181,8 @@ ion-icon {
 .options select {
   width: 100%;
   padding: 10px;
+  color: var(--clr-augmented-400);
+  background-color: var(--clr-neutral-400);
   border: 2px solid var(--clr-neutral-700);
   border-radius: var(--br-border-radius);
   outline: none;
@@ -211,8 +213,64 @@ hr.line {
 }
 
 /*=============================================
-
+            buttons
 ================================================*/
+.btn {
+  display: flex;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 20px;
+  height: 60px;
+  /*padding: 20px;*/
+  width: 100%;
+  outline: none;
+  border: none;
+  border-radius: var(--br-border-radius);
+  /*font-size: 24px;*/
+  font-weight: 500;
+  cursor: pointer;
+  color: #fff;
+  color: var(--clr-neutral-300);
+  background-color: var(--clr-primary-800);
+  transition: all 0.333s;
+}
+
+.btn:hover {
+  color: var(--clr-neutral-100);
+}
+
+.btn-text {
+  margin-top: 16px;
+  font-size: 24px;
+  font-weight: var(--fw-font-weight-700);
+  letter-spacing: 1px;
+}
+
+.btn ion-icon {
+  font-size: 32px;
+}
+
+.btn:disabled {
+  background-color: var(--clr-neutral-500);
+  cursor: not-allowed;
+}
+
+.btn-record img {
+  width: 30px;
+  height: 30px;
+  display: none;
+}
+
+.btn-record.recording img {
+  display: block;
+}
+
+.btn-record.recording ion-icon {
+  display: none;
+}
+
 /*=============================================
 
 ================================================*/
