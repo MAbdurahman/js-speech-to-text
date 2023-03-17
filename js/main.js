@@ -42,9 +42,23 @@ $(document).ready(function () {
   }//end of the clearTextField function
   
   /**
-   * @description -
+   * @description - creates file, add innerText to the file, and configure for its ability to
+   * be downloaded.
    */
   function downloadText () {
+    const text = result_text.innerText;
+    const filename = 'speechToText.txt';
+    
+    const element = document.createElement('a');
+    element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+    element.setAttribute('download', filename);
+    element.style.display = 'none';
+    
+    document.body.appendChild(element);
+    element.click();
+    
+    document.body.removeChild(element);
+    
   
   }// end of the downloadText function
   
@@ -87,10 +101,13 @@ $(document).ready(function () {
       
       recognition.onresult = (e) => {
         const speech_results = e.results[0][0].transcript;
-        console.log(speech_results);
+        
         // detect when interim results
         if (e.results[0].isFinal) {
           result_text.innerHTML += ' ' + speech_results;
+          if (result_text.querySelector('p.interim')) {
+            result_text.querySelector("p.interim").remove();
+          }
           
         } else {
           // if paragraph tag does not exist, create it with class interim
@@ -139,7 +156,8 @@ $(document).ready(function () {
   }//end of the speechToText function
   
   /**
-   * @description -
+   * @description - stops SpeechRecognition, sets the innerHTML to the original text, removes
+   * the recording class, and set isRecording to false.
    */
   function stopRecording () {
     recognition.stop();
