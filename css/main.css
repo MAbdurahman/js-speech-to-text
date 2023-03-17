@@ -146,10 +146,6 @@ input::placeholder {
   color: var(--clr-augmented-200);
 }
 
-.interim {
-  display: none;
-}
-
 ion-icon {
   font-size: 4rem;
 }

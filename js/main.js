@@ -30,12 +30,15 @@ $(document).ready(function () {
     });
     
   }// end of populateLanguages function
+  populateLanguages();
   
   /**
-   * @description -
+   * @description - clears the result speech textfield and disables the download_button
    */
   function clearTextField () {
-  
+    result_text.innerHTML = '';
+    download_button.disabled = true;
+    
   }//end of the clearTextField function
   
   /**
@@ -52,7 +55,7 @@ $(document).ready(function () {
       
     } else {
       stopRecording();
-      
+      isRecording = false;
     }
   }; //end of the startOrStopRecording function
   
@@ -60,7 +63,19 @@ $(document).ready(function () {
    * @description -
    */
   function speechToText () {
+    
+    if (result_text.innerHTML.length > 0) {
+      clearTextField();
+      
+    } else {
+      const interim = document.createElement('p');
+      interim.classList.add('interim');
+      result_text.appendChild(interim);
+      
+    }
+    
     try {
+      
       recognition = new SpeechRecognition();
       recognition.lang = input_language.value;
       recognition.interimResults = true;
@@ -71,11 +86,11 @@ $(document).ready(function () {
       recognition.start();
       
       recognition.onresult = (e) => {
-        const speech_results = e.result[0][0].transcript;
+        const speech_results = e.results[0][0].transcript;
+        console.log(speech_results);
         // detect when interim results
-        if (e.result[0].isFinal) {
+        if (e.results[0].isFinal) {
           result_text.innerHTML += ' ' + speech_results;
-          result_text.querySelector('p').remove();
           
         } else {
           // if paragraph tag does not exist, create it with class interim
@@ -133,8 +148,6 @@ $(document).ready(function () {
     isRecording = false;
     
   }//end of the stopRecording function
-  
-  populateLanguages();
   
   clear_button.addEventListener('click', clearTextField);
   download_button.addEventListener('click', downloadText);
