@@ -152,6 +152,37 @@ input::placeholder {
 ion-icon {
   font-size: 4rem;
 }
+
+/* =========================================
+              Preloader
+============================================ */
+#preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #262626;
+  background: var(--clr-augmented-400);
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+  z-index: 10000;
+}
+
+#preloader-gif {
+  width: 33.33%;
+  align-self: center;
+}
+
+@media screen and (max-width: 768px) {
+  #preloader-gif {
+    width: 50%;
+  }
+}
 /*=============================================
           wrapper
 ================================================*/
