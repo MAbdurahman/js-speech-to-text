@@ -74,17 +74,15 @@ body {
   min-height: 100vh;
   height: 100vh;
   margin: 0;
-  background-image: radial-gradient(circle, var(--clr-augmented-100) 28%, var(--clr-augmented-200) 100%);
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #fff;
-  color: var(--clr-neutral-300);
-  color: var(--clr-augmented-400);
   font-family: var(--ff-font-body);
   font-weight: var(--fw-font-weight-400);
   font-size: 1rem;
   letter-spacing: var(--ls-letter-spacing);
+  color: var(--clr-augmented-400);
+  background-image: radial-gradient(circle, var(--clr-augmented-100) 28%, var(--clr-augmented-200) 100%);
   transition: filter 0.5s;
 }
 
@@ -94,14 +92,10 @@ body {
     overflow: hidden;
   }
 }
-p {
-  margin-bottom: 1rem;
-}
-
 h1, h2, h3, h4, h5 {
   margin: 3rem 0 1.38rem;
   font-family: var(--ff-font-body);
-  font-weight: var(--fw-font-weight-500);
+  font-weight: var(--fw-font-weight-600);
   line-height: 1;
 }
 
@@ -125,6 +119,10 @@ h4 {
 
 h5 {
   font-size: 1.25rem;
+}
+
+p {
+  margin-bottom: 1rem;
 }
 
 small, .text_small {
@@ -197,14 +195,8 @@ ion-icon {
   }
 }
 /*=============================================
-
+        heading
 ================================================*/
-/*.wrapper {
-  width: 400px;
-  padding: 20px;
-  border-radius: 10px;
-  background-color: var(--clr-augmented-100);
-}*/
 .heading {
   margin-bottom: 0.75em;
   font-weight: var(--fw-font-weight-700);
@@ -221,7 +213,6 @@ ion-icon {
   padding: 10px;
   color: var(--clr-augmented-400);
   background-color: var(--clr-neutral-400);
-  border: 2px solid var(--clr-neutral-700);
   border: 2px solid var(--clr-primary-800);
   border-radius: var(--br-border-radius);
   outline: none;
@@ -244,35 +235,31 @@ select#language {
 
 hr.line {
   position: relative;
-  width: 100%;
+  width: 90%;
   height: 2px;
   background-color: var(--clr-primary-800);
-  /*opacity: 0.5;*/
-  margin: 32px 0;
+  margin: 32px auto;
 }
 
 /*=============================================
             buttons
 ================================================*/
 .btn {
+  height: 60px;
+  width: 100%;
   display: flex;
   align-content: center;
   align-items: center;
   justify-content: center;
   gap: 8px;
   margin-bottom: 20px;
-  height: 60px;
-  /*padding: 20px;*/
-  width: 100%;
+  font-weight: 500;
+  color: var(--clr-neutral-300);
+  background-color: var(--clr-primary-800);
   outline: none;
   border: none;
   border-radius: var(--br-border-radius);
-  /*font-size: 24px;*/
-  font-weight: 500;
   cursor: pointer;
-  color: #fff;
-  color: var(--clr-neutral-300);
-  background-color: var(--clr-primary-800);
   transition: all 0.333s;
 }
 
@@ -319,6 +306,28 @@ hr.line {
   font-size: 20px;
   font-weight: var(--fw-font-weight-700);
   letter-spacing: 1px;
+}
+
+.swal-button {
+  color: var(--clr-neutral-300);
+  background-color: var(--clr-primary-800);
+  transition: all 0.333s;
+}
+
+.swal-button:not([disabled]):hover {
+  color: var(--clr-neutral-100);
+  background-color: var(--clr-primary-800);
+}
+
+.swal-button--cancel {
+  color: var(--clr-neutral-300);
+  background-color: var(--clr-primary-400);
+  transition: all 0.333s;
+}
+
+.swal-button--cancel:hover {
+  color: var(--clr-neutral-100);
+  background-color: var(--clr-primary-400);
 }
 
 /*=============================================

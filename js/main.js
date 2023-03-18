@@ -36,6 +36,9 @@ $(document).ready(function () {
    * @description - clears the result speech textfield and disables the download_button
    */
   function clearTextField () {
+    if (result_text.innerHTML === '') {
+      swal('Invalid Entry', 'Message is already empty!', 'error');
+    }
     result_text.innerHTML = '';
     download_button.disabled = true;
     
@@ -59,9 +62,11 @@ $(document).ready(function () {
     
     document.body.removeChild(element);
     
-  
   }// end of the downloadText function
   
+  /**
+   * @description - starts or stops the recording
+   */
   function startOrStopRecording () {
     if (!isRecording) {
       speechToText();
@@ -74,7 +79,8 @@ $(document).ready(function () {
   }; //end of the startOrStopRecording function
   
   /**
-   * @description -
+   * @description - the workhorse of the program; in that, it initializes the SpeechRecognition and
+   * utilizes many of the listeners of the SpeechRecognition (onresult, onspeechend, and onerror).
    */
   function speechToText () {
     
@@ -89,7 +95,6 @@ $(document).ready(function () {
     }
     
     try {
-      
       recognition = new SpeechRecognition();
       recognition.lang = input_language.value;
       recognition.interimResults = true;
@@ -106,7 +111,7 @@ $(document).ready(function () {
         if (e.results[0].isFinal) {
           result_text.innerHTML += ' ' + speech_results;
           if (result_text.querySelector('p.interim')) {
-            result_text.querySelector("p.interim").remove();
+            result_text.querySelector('p.interim').remove();
           }
           
         } else {
@@ -131,29 +136,36 @@ $(document).ready(function () {
       recognition.onerror = (e) => {
         stopRecording();
         if (e.error === 'no-speech') {
-          alert('No speech was detected. Stopping...');
+          swal('No Speech!', 'No speech was detected. Stopping...', 'error');
+          return;
           
         } else if (e.error === 'audio-capture') {
-          alert('No microphone was found. Ensure that a microphone is installed.');
+          swal('No Microphone Found!', 'Ensure that a microphone is installed', 'error');
+          return;
           
         } else if (e.error === 'not-allowed') {
-          alert('Permission to use microphone is blocked.');
+          
+          swal('Permission Denied!', 'Permission to use microphone is blocked.', 'error');
+          return;
           
         } else if (e.error === 'aborted') {
-          alert('Listening Stopped.');
+          swal('Speech Recognition Aborted!', 'Speech Recognition has stopped listening.', 'error');
+          return;
           
         } else {
-          alert('Error occurred in recognition: ' + e.error);
+          swal('Speech Recognition Failed!', 'Error ' + e.error, 'error');
+          return;
           
         }
       };
       
     } catch (error) {
       isRecording = false;
-      console.log(error);
+      swal('Error: ' + error.message, 'error');
+      return;
     }
     
-  }//end of the speechToText function
+  };//end of the speechToText function
   
   /**
    * @description - stops SpeechRecognition, sets the innerHTML to the original text, removes
