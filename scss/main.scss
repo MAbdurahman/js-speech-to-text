@@ -111,7 +111,7 @@ p {margin-bottom: 1rem;}
 h1, h2, h3, h4, h5 {
   margin: 3rem 0 1.38rem;
   font-family: var(--ff-font-body);
-  font-weight: var(--fw-font-weight-500);
+  font-weight: var(--fw-font-weight-600);
   line-height: 1;
 }
 
@@ -270,7 +270,7 @@ hr.line {
   color: #fff;
   color: var(--clr-neutral-300);
   background-color: var(--clr-primary-800);
-  transition: all 0.333s
+  transition: all 0.333s;
 }
 
 .btn:hover {
@@ -315,6 +315,27 @@ hr.line {
   font-size: 20px;
   font-weight: var(--fw-font-weight-700);
   letter-spacing: 1px;
+}
+
+.swal-button {
+  color: var(--clr-neutral-300);
+  background-color: var(--clr-primary-800);
+  transition: all 0.333s;
+}
+
+.swal-button:not([disabled]):hover {
+  color: var(--clr-neutral-100);
+  background-color: var(--clr-primary-800);
+}
+
+.swal-button--cancel {
+  color: var(--clr-neutral-300);
+  background-color: var(--clr-primary-400);
+  transition: all 0.333s;
+}
+.swal-button--cancel:hover {
+  color: var(--clr-neutral-100);
+  background-color: var(--clr-primary-400);
 }
 
 /*=============================================
