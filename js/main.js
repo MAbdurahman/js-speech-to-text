@@ -36,6 +36,9 @@ $(document).ready(function () {
    * @description - clears the result speech textfield and disables the download_button
    */
   function clearTextField () {
+    if (result_text.innerHTML === '') {
+      swal('Invalid Entry', 'Message is already empty!', 'error');
+    }
     result_text.innerHTML = '';
     download_button.disabled = true;
     
