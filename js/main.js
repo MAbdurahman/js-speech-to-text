@@ -108,7 +108,7 @@ $(document).ready(function () {
         if (e.results[0].isFinal) {
           result_text.innerHTML += ' ' + speech_results;
           if (result_text.querySelector('p.interim')) {
-            result_text.querySelector("p.interim").remove();
+            result_text.querySelector('p.interim').remove();
           }
           
         } else {
@@ -133,27 +133,23 @@ $(document).ready(function () {
       recognition.onerror = (e) => {
         stopRecording();
         if (e.error === 'no-speech') {
-          /*alert('No speech was detected. Stopping...');*/
           swal('No Speech!', 'No speech was detected. Stopping...', 'error');
           return;
           
         } else if (e.error === 'audio-capture') {
-          /*alert('No microphone was found. Ensure that a microphone is installed.');*/
           swal('No Microphone Found!', 'Ensure that a microphone is installed', 'error');
           return;
           
         } else if (e.error === 'not-allowed') {
-          /*alert('Permission to use microphone is blocked.');*/
+          
           swal('Permission Denied!', 'Permission to use microphone is blocked.', 'error');
           return;
           
         } else if (e.error === 'aborted') {
-          /*alert('Listening Stopped.');*/
           swal('Speech Recognition Aborted!', 'Speech Recognition has stopped listening.', 'error');
           return;
           
         } else {
-          /*alert('Error occurred in recognition: ' + e.error);*/
           swal('Speech Recognition Failed!', 'Error ' + e.error, 'error');
           return;
           
@@ -162,7 +158,6 @@ $(document).ready(function () {
       
     } catch (error) {
       isRecording = false;
-      /*console.log(error);*/
       swal('Error: ' + error.message, 'error');
       return;
     }
