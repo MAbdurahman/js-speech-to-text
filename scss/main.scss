@@ -70,12 +70,11 @@ html {
     font-size: 83.333%;
   }
 }
-@media only screen and (max-width: 320px){
+@media only screen and (max-width: 360px){
   html {
     font-size: 66.667%;
   }
 }
-
 
 body {
   width: 100%;
@@ -146,7 +145,7 @@ ion-icon {
 }
 
 /* =========================================
-              Preloader
+              preloader
 ============================================ */
 #preloader {
   position: fixed;
@@ -185,6 +184,11 @@ ion-icon {
   border-radius: var(--br-border-radius);
   background: hsla(0, 0%, 94%, 70%);
   background: var(--clr-augmented-100);
+}
+@media only screen and (max-height: 667px){
+  .wrapper {
+    padding-top: 4px;
+  }
 }
 @media only screen and (max-width: 540px) {
   .wrapper {
@@ -262,10 +266,16 @@ hr.line {
 }
 
 .btn-text {
-  margin-top: 16px;
-  font-size: 24px;
+  margin-top: .5em;
+  font-size: 1.75rem;
+  font-size: calc( 20px + (24 - 20) * (100vw - 400px) / (800 - 400) );
   font-weight: var(--fw-font-weight-700);
   letter-spacing: 1px;
+}
+@media only screen and (min-width: 1366px){
+  .btn-text {
+    font-size: 1.5rem;
+  }
 }
 
 .btn ion-icon {
@@ -296,7 +306,7 @@ hr.line {
 }
 .btn-text-altered {
   margin-top: 16px;
-  font-size: 20px;
+  font-size: calc( 16px + (18 - 16) * (100vw - 400px) / (800 - 400) );
   font-weight: var(--fw-font-weight-700);
   letter-spacing: 1px;
 }
@@ -330,18 +340,15 @@ hr.line {
   gap: 20px;
 }
 
-
 /*=============================================
-
+        result-text
 ================================================*/
 .result-text {
   width: 100%;
   min-height: 200px;
-
   margin-bottom: 20px;
   padding: 10px;
-
-  font-size: 18px;
+  font-size: calc( 16px + (16 - 16) * (100vw - 400px) / (800 - 400) );
   font-weight: 500;
   color: var(--clr-augmented-400);
   background-color: var(--clr-neutral-400);
@@ -350,15 +357,3 @@ hr.line {
   border: 2px solid var(--clr-primary-800);
 
 }
-/*=============================================
-
-================================================*/
-/*=============================================
-
-================================================*/
-/*=============================================
-
-================================================*/
-/*=============================================
-
-================================================*/
