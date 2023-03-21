@@ -33,14 +33,36 @@ $(document).ready(function () {
   populateLanguages();
   
   /**
+   * @description - clears the result_text and sets to back to the original settings in
+   * the DOM
+   */
+  function addInterimParagraph () {
+    const interim = document.createElement('p');
+    interim.classList.add('interim');
+    interim.setAttribute('spellcheck', false);
+    interim.setAttribute('contentEditable', 'true');
+    interim.dataset.placeholder = 'Text will be displayed here';
+    result_text.appendChild(interim);
+    
+  }// end of addInterimParagraph function
+  /**
    * @description - clears the result speech textfield and disables the download_button
    */
   function clearTextField () {
-    if (result_text.innerHTML === '') {
+    if (document.querySelector('p.interim')) {
       swal('Invalid Entry', 'Message is already empty!', 'error');
+      return;
+      
+    } else if (result_text.innerHTML.length <= 0) {
+      swal('Invalid Entry', 'Message is already empty!', 'error');
+      return;
+      
+    } else {
+      result_text.innerHTML = '';
+      addInterimParagraph();
+      download_button.disabled = true;
+      
     }
-    result_text.innerHTML = '';
-    download_button.disabled = true;
     
   }//end of the clearTextField function
   
@@ -74,7 +96,7 @@ $(document).ready(function () {
       
     } else {
       stopRecording();
-      isRecording = false;
+      
     }
   }; //end of the startOrStopRecording function
   
@@ -83,16 +105,6 @@ $(document).ready(function () {
    * utilizes many of the listeners of the SpeechRecognition (onresult, onspeechend, and onerror).
    */
   function speechToText () {
-    
-    if (result_text.innerHTML.length > 0) {
-      clearTextField();
-      
-    } else {
-      const interim = document.createElement('p');
-      interim.classList.add('interim');
-      result_text.appendChild(interim);
-      
-    }
     
     try {
       recognition = new SpeechRecognition();
@@ -110,9 +122,7 @@ $(document).ready(function () {
         // detect when interim results
         if (e.results[0].isFinal) {
           result_text.innerHTML += ' ' + speech_results;
-          if (result_text.querySelector('p.interim')) {
-            result_text.querySelector('p.interim').remove();
-          }
+          result_text.querySelector('p.interim').remove();
           
         } else {
           // if paragraph tag does not exist, create it with class interim
@@ -124,7 +134,6 @@ $(document).ready(function () {
           }
           //update the interim p with the speech result
           document.querySelector('.interim').innerHTML = ' ' + speech_results;
-          
         }
         download_button.disabled = false;
       };
@@ -137,24 +146,18 @@ $(document).ready(function () {
         stopRecording();
         if (e.error === 'no-speech') {
           swal('No Speech!', 'No speech was detected. Stopping...', 'error');
-          return;
           
         } else if (e.error === 'audio-capture') {
           swal('No Microphone Found!', 'Ensure that a microphone is installed', 'error');
-          return;
           
         } else if (e.error === 'not-allowed') {
-          
           swal('Permission Denied!', 'Permission to use microphone is blocked.', 'error');
-          return;
           
         } else if (e.error === 'aborted') {
           swal('Speech Recognition Aborted!', 'Speech Recognition has stopped listening.', 'error');
-          return;
           
         } else {
           swal('Speech Recognition Failed!', 'Error ' + e.error, 'error');
-          return;
           
         }
       };
@@ -162,7 +165,7 @@ $(document).ready(function () {
     } catch (error) {
       isRecording = false;
       swal('Error: ' + error.message, 'error');
-      return;
+      
     }
     
   };//end of the speechToText function
