@@ -75,7 +75,7 @@ $(document).ready(function () {
     const filename = 'speechToText.txt';
     
     const element = document.createElement('a');
-    element.href = 'https://js-speech-to-text.netlify.app/filename';
+    element.href = `https://js-speech-to-text.netlify.app/${filename}`;
     element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
     element.setAttribute('download', filename);
     element.style.display = 'none';
@@ -111,6 +111,13 @@ $(document).ready(function () {
     
     try {
       recognition = new SpeechRecognition();
+  
+      /**
+       * If recognition.continuous = false, the recording will stop after a few seconds of
+       * silence.  When it is true, the silence period can be longer (about 15 seconds).  Thus,
+       * allowing SpeechRecognition to continue recording, even when the speaker pauses.
+       */
+      recognition.continuous = true;
       recognition.lang = input_language.value;
       recognition.interimResults = true;
       
@@ -141,10 +148,16 @@ $(document).ready(function () {
         download_button.disabled = false;
       };
       
-      recognition.onspeechend = () => {
+/*      recognition.onspeechend = () => {
         speechToText();
-      };
-      
+      };*/
+  
+      recognition.onspeechend = function () {
+        if (isRecording === true) {
+          swal('Speech Recognition Terminated', 'Terminates, when silence for 15 seconds.', 'info');
+        }
+    
+      }; //end of onspeechend function
       recognition.onerror = (e) => {
         stopRecording();
         if (e.error === 'no-speech') {
