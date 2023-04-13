@@ -33,8 +33,7 @@ $(document).ready(function () {
   populateLanguages();
   
   /**
-   * @description - clears the result_text and sets to back to the original settings in
-   * the DOM
+   * @description - creates the interim paragraph and adds to result text
    */
   function addInterimParagraph () {
     const interim = document.createElement('p');
@@ -46,7 +45,8 @@ $(document).ready(function () {
     
   }// end of addInterimParagraph function
   /**
-   * @description - clears the result speech textfield and disables the download_button
+   * @description - clears the result speech textfield, disables the download_button, and
+   * sets to original settings
    */
   function clearTextField () {
     if (document.querySelector('p.interim')) {
@@ -75,6 +75,7 @@ $(document).ready(function () {
     const filename = 'speechToText.txt';
     
     const element = document.createElement('a');
+    element.href = 'https://js-speech-to-text.netlify.app/speech-to-text.txt';
     element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
     element.setAttribute('download', filename);
     element.style.display = 'none';
@@ -182,6 +183,9 @@ $(document).ready(function () {
     
   }//end of the stopRecording function
   
+  /*=============================================
+          adding event listeners
+  ================================================*/
   clear_button.addEventListener('click', clearTextField);
   download_button.addEventListener('click', downloadText);
   record_button.addEventListener('click', startOrStopRecording);
