@@ -94,6 +94,8 @@ $(document).ready(function () {
     if (!isRecording) {
       speechToText();
       isRecording = true;
+      swal('SpeechRecognition Started', 'SpeechRecognition successfully started.', 'info');
+      
       
     } else {
       stopRecording();
@@ -177,6 +179,7 @@ $(document).ready(function () {
    */
   function stopRecording () {
     recognition.stop();
+    swal('SpeechRecognition Stopped', 'SpeechRecognition successfully stopped.', 'info');
     record_button.querySelector('.btn-text').innerHTML = 'Start Listening';
     record_button.classList.remove('recording');
     isRecording = false;
