@@ -13,11 +13,13 @@ $(document).ready(function () {
   const download_button = document.querySelector('#download-button');
   const record_button = document.querySelector('#record-button');
   const result_text = document.querySelector('#result-text');
+  const URL = window.location.href;
   
   let SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
   let isRecording = false;
   let recognition;
   
+  console.log(`${URL}`);
   /**
    * @description - populates the languages from data/languages.js to the select option
    */
@@ -75,7 +77,7 @@ $(document).ready(function () {
     const filename = 'speechToText.txt';
     
     const element = document.createElement('a');
-    element.href = `https://js-speech-to-text.netlify.app/${filename}`;
+    element.href = `${URL}${filename}`;
     element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
     element.setAttribute('download', filename);
     element.style.display = 'none';
@@ -108,6 +110,11 @@ $(document).ready(function () {
    * utilizes many of the listeners of the SpeechRecognition (onresult, onspeechend, and onerror).
    */
   function speechToText () {
+    if (result_text.innerHTML.length > 0) {
+      result_text.innerHTML = '';
+      addInterimParagraph();
+      download_button.disabled = true;
+    }
     
     try {
       recognition = new SpeechRecognition();
